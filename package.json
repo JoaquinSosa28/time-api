@@ -1,0 +1,24 @@
+{
+  "name": "time-api",
+  "version": "1.0.0",
+  "description": "An API to check for current time or time ranges",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JoaquinSosa28/time-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoaquinSosa28/time-api/issues"
+  },
+  "homepage": "https://github.com/JoaquinSosa28/time-api#readme",
+  "dependencies": {
+    "@oaas-hg/utils": "^0.1.2",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  }
+}
