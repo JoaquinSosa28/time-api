@@ -1,19 +1,28 @@
 exports.getTime = async (req, res) => {
 
-  const { hours, days, gmt = 0 } = req.query;
+  let { hours, days, gmt = 0 } = req.query;
   const millisPerHour = 3600000;
 
   let [fromDays, toDays] = days.split("-"); 
   let [fromHours, toHours] = hours.split("-");
-  if (toDays === undefined) {toDays = fromDays}
-  if (toHours === undefined) {toHours = fromHours}
-  // toDays ? toDays : fromDays
+  toDays ? toDays = toDays : toDays = fromDays
+  toHours ? toHours = toHours : toHours = fromHours
 
   // Parse gmt into Number if it can be parsed, otherwise use 0
-  const today = new Date(Date.now() + millisPerHour * gmt)
-  let todayHour = today.getHours() + 3
+
+  let gmtHour
+  // !gmt.includes("-") && (gmt = `+${gmt}`)
+  gmt.includes(`-`) ? gmtHour =`GMT+${gmt}:00` :  
+
+  const today = new Date(`${new Date().toUTCString()} ${gmt}`);
+  
+  let todayHour = today.getHours()
   const appliesDays = today.getDay() >= fromDays && today.getDay() <= toDays;
   const appliesHours = todayHour >= fromHours && todayHour <= toHours;
+  
+
+  console.log(today.getHours())
+
 
   res.sendStatus(appliesDays && appliesHours ? 204 : 418);  
 };
