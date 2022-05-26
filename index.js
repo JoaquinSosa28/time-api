@@ -19,5 +19,5 @@ app.use(
 
 app.listen(APP_PORT, async () => {
   normalLog(`Server listening on port ${APP_PORT}`);
-  app.use("/time", require("./routes/time"));
+  app.use("/time", require("./src/routes/time"));
 });
